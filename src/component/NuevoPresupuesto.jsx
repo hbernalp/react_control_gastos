@@ -31,7 +31,7 @@ const NuevoPresupuesto = ({
 
           <input 
             className='nuevo-presupuesto'
-            type='number'
+            type='Number'
             placeholder ='Añade tu presupuesto' 
             value = {presupuesto}   
             //Para capturar el valor del formulario
