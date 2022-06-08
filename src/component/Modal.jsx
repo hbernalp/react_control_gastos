@@ -24,7 +24,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
     const handleSubmit = e =>{// pasamos un evento con la letra e
         e.preventDefault()//para evitar que se envie el formuario
 
-        if([ nombre, cantidad, categoria ].includes('')) { //Revisa si alguno de los campos esta vacio (arreglo con u if par averificarlo), el includes verifica por cada campo que esta en el arreglo
+        if([ nombre, cantidad, categoria ].includes('')) { //Revisa si alguno de los campos esta vacio ( if para averificarlo), el includes verifica por cada campo que esta en el arreglo
             setMensaje('Todos los campos son obligatorios')
 
             setTimeout(() => {
@@ -57,7 +57,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
 
             <legend>Nuevo Gasto</legend>
 
-            {/*Cuando mensaje tenga algo entonces cargar el componente de mensaje*/}
+            {/*Cuando mensaje tenga algo entonces && cargar el componente de mensaje*/}
             {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
 
            
