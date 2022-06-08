@@ -36,6 +36,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
         }
 
         guardarGasto({nombre, cantidad, categoria})
+        
 
     }
 
