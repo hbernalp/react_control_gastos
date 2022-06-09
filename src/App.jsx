@@ -3,6 +3,7 @@ import Header from './component/Header'
 import IconNewCost from './img/nuevo-gasto.svg'
 import { generateId } from './helpers'
 import Modal from './component/Modal'
+import ListadoGastos from './component/ListadoGastos'
 
 function App() {
 
@@ -29,9 +30,9 @@ function App() {
 
   const guardarGasto = gasto => {
     gasto.id = generateId()
+    gasto.fecha = Date.now() //Capturando la fecha del registro desde el helper
     setGastos([...gastos, gasto])
     
-
     setAnimarModal(false)
     setTimeout(() => {
       setModal(false)
@@ -54,14 +55,26 @@ function App() {
 
       {/*Aqui estoy permitiendo que se ingrese un presupuesto valido, al cargarlo muestra el boton de nuevo presupuesto*/}
       {isValidPresupuesto  && ( //Si el presupuesto es valido
-        <div className='nuevo-gasto'>
-        <img 
-          src={IconNewCost} 
-          alt="Create New Cost" 
-          onClick={handleNuevoPresupuesto} //Onclick hace el llamado al evento de traer el componente NuevoPresupuesto
-        />
+      <>
+        {/* Creando el area para listado de gastos */}
+        <main>
+          {/* Mostrando el componente Listado de Gastos */}
+          <ListadoGastos 
+          
+          gastos={gastos}
+          
+          />
 
-      </div>
+        </main>
+
+        <div className='nuevo-gasto'>
+          <img 
+            src={IconNewCost} 
+            alt="Create New Cost" 
+            onClick={handleNuevoPresupuesto} //Onclick hace el llamado al evento de traer el componente NuevoPresupuesto
+          />
+        </div>
+      </>
       )}
       
       {/*activando la carga de la ventana modal */}
