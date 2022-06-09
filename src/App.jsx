@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './component/Header'
 import IconNewCost from './img/nuevo-gasto.svg'
 import { generateId } from './helpers'
@@ -7,6 +7,8 @@ import ListadoGastos from './component/ListadoGastos'
 
 function App() {
 
+  //Creando el hook para gastos
+  const [gastos, setGastos] = useState([])
   //Definicion del state para el nuevo presupuesto
   const [presupuesto, setPresupuesto] = useState(0)
   //Definicion del state para validar si hay presupuesto valido
@@ -15,8 +17,18 @@ function App() {
   const[modal,setModal] = useState(false)
   //creando el Hook para hacer la transicion automaticamente del formulario en la modal
   const[animarModal, setAnimarModal] = useState(false)
-  //Creando el hook para gastos
-  const [gastos, setGastos] = useState([])
+
+  //Crear el state gastoEditar como un objeto
+  const [gastoEditar, setGastoEditar] = useState({})
+  //Useffect que va a estar escuchando los cambios que pasan en gastoEditar
+  useEffect(() => {
+    if( Object.keys(gastoEditar).length > 0){
+      handleNuevoPresupuesto()
+    }   
+  },[ gastoEditar ]);
+
+
+ 
 
   //funcion para crear un nuevo presupuesto desde la modal
   const handleNuevoPresupuesto = ()=>{
@@ -43,11 +55,11 @@ function App() {
 
   return (
     
-    <div>
+    <div className={modal ? 'fijar' : ''}>   
       <Header
+      gastos={gastos}
       presupuesto={presupuesto}
       setPresupuesto={setPresupuesto}
-
       isValidPresupuesto={isValidPresupuesto}
       setisValidPresupuesto={setisValidPresupuesto}
       
@@ -62,6 +74,7 @@ function App() {
           <ListadoGastos 
           
           gastos={gastos}
+          setGastoEditar={setGastoEditar}
           
           />
 

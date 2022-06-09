@@ -1,6 +1,24 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
-export const ControlPresupuesto = ({ presupuesto }) => {
+
+export const ControlPresupuesto = ({ gastos, presupuesto }) => {
+
+  const [disponible, setDisponible] = useState(0)
+  const [gastado, setGastado] = useState(0)
+
+  useEffect(() => {
+    //Para poder hacer un calculo de un arreglo se debe utilizar .reduce ya que este permite acumular muchos objetos dentro de una variabla
+    const totalGasto = gastos.reduce((total, gasto) => gasto.cantidad + total, 0)
+    //hallando el disponible
+    const totalDisponible = presupuesto - totalGasto
+
+    //Mostrando lo gastado y el Disponible
+    setGastado(totalGasto)
+    setDisponible(totalDisponible)
+    
+  }, [gastos])
+
+ 
     //Funcion para formatear el valor digitado
   const formatearCantidad = (cantidad) => {
 
@@ -21,10 +39,10 @@ export const ControlPresupuesto = ({ presupuesto }) => {
           <span>Presupuesto: </span> {formatearCantidad(presupuesto)} 
         </p>
         <p>
-          <span>Disponible: </span> {formatearCantidad(0)} 
+          <span>Disponible: </span> {formatearCantidad(disponible)} 
         </p>
         <p>
-          <span>Gastado: </span> {formatearCantidad(0)} 
+          <span>Gastado: </span> {formatearCantidad(gastado)} 
         </p>
       </div>
     </div>

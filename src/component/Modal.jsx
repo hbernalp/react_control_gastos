@@ -30,7 +30,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
             setTimeout(() => {
                 setMensaje('')
                 
-            }, 2000)
+            }, 1000)
             return
 
         }
@@ -94,7 +94,6 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
                     <option value="ahorro">Ahorro</option>
                     <option value="casa">Casa</option>
                     <option value="comida">Comida</option>
-                    <option value="ocio">Gastos</option>
                     <option value="ocio">Ocio</option>
                     <option value="ocio">Salud</option>                    
                     <option value="suscripciones">Suscripciones</option>

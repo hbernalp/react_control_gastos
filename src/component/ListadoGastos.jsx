@@ -1,7 +1,7 @@
 import React from 'react'
 import Gasto from './Gasto'
 
-const ListadoGastos = ({gastos}) => { //Captura los gastos por props desde componente padre App.jsx
+const ListadoGastos = ({gastos, setGastoEditar}) => { //Captura los gastos por props desde componente padre App.jsx
   return (
     <div className='listado-gastos contenedor'>
       <h2>{gastos.length ? 'Gastos' : 'No hay gastos'} </h2>
@@ -11,6 +11,7 @@ const ListadoGastos = ({gastos}) => { //Captura los gastos por props desde compo
         <Gasto 
         key={gasto.id}
         gasto={gasto}
+        setGastoEditar={setGastoEditar}
         
         />
       )) }
